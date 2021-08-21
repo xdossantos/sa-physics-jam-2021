@@ -1,10 +1,11 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Mirror; 
 
 [RequireComponent(typeof(CharacterController))]
 
-public class PlayerController : MonoBehaviour
+public class PlayerController : NetworkBehaviour
 {
     public float walkingSpeed = 7.5f; 
     public float runningSpeed = 11.5f; 
@@ -35,6 +36,11 @@ public class PlayerController : MonoBehaviour
     void Update()
     {
 
+        // If we are nto the main client do not run this method 
+        if(!isLocalPlayer)
+        {
+            return; 
+        }
         // We are grounded so we need to recalculate move direction based on axes
         Vector3 forward = transform.TransformDirection(Vector3.forward); 
         Vector3 right = transform.TransformDirection(Vector3.right); 
