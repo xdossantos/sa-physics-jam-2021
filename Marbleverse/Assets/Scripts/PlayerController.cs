@@ -30,6 +30,13 @@ public class PlayerController : NetworkBehaviour
         //Lock cursor 
         Cursor.lockState = CursorLockMode.Locked; 
         Cursor.visible = false; 
+
+        // Disable camera if we are not the local player 
+
+        if (!isLocalPlayer)
+        {
+            playerCamera.gameObject.SetActive(false); 
+        }
     }
 
     // Update is called once per frame
