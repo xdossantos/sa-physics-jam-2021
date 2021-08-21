@@ -2,12 +2,12 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-[RequirementsComponent(typeof(CharacterController))]
+[RequireComponent(typeof(CharacterController))]
 
 public class PlayerController : MonoBehaviour
 {
     public float walkingSpeed = 7.5f; 
-    public float runingSpeed = 11.5f; 
+    public float runningSpeed = 11.5f; 
     public float jumpSpeed = 8.0f; 
     public float gravity = 20.0f; 
     public Camera playerCamera; 
@@ -18,7 +18,7 @@ public class PlayerController : MonoBehaviour
     Vector3 moveDirection = Vector3.zero; 
     float rotationX = 0; 
 
-    [HideInspector]
+    [HideInInspector]
     public bool canMove = true;
 
     // Start is called before the first frame update
@@ -71,8 +71,8 @@ public class PlayerController : MonoBehaviour
         // Player and Camera rotation should
         if(canMove)
         {
-            rotationX += Input.GetAxis("Mouse Y") * lookSpeed; 
-            rotationX = Math.Clamp(rotationX, -lookXLimit, lookXLimit); 
+            rotationX += -Input.GetAxis("Mouse Y") * lookSpeed; 
+            rotationX = Mathf.Clamp(rotationX, -lookXLimit, lookXLimit); 
             playerCamera.transform.localRotation = Quaternion.Euler(rotationX, 0, 0); 
             transform.rotation *= Quaternion.Euler(0, Input.GetAxis("Mouse X") * lookSpeed, 0); 
         }
