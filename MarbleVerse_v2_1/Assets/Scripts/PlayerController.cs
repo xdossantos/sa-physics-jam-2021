@@ -57,6 +57,10 @@ public class PlayerController : NetworkBehaviour
         bool isRunning = Input.GetKey(KeyCode.LeftShift); 
         float curSpeedX = canMove? (isRunning ? runningSpeed : walkingSpeed) * Input.GetAxis("Vertical"): 0; 
         float curSpeedY = canMove? (isRunning ? runningSpeed : walkingSpeed) * Input.GetAxis("Horizontal"): 0; 
+        // TODO Regina add physics and colliders 
+        //Rigidbody body = GetComponent<Rigidbody>();
+        //body.AddTorque(new Vector3(curSpeedX, 0, curSpeedY) * (isRunning ? runningSpeed : walkingSpeed) * Time.deltaTime);
+        
         float movementDirectionY = moveDirection.y; 
         moveDirection = (forward * curSpeedX) + (right * curSpeedY); 
 
